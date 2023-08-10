@@ -10,7 +10,7 @@ public class JsonStringParser {
     public static void main(String[] args) {
         try {
 
-            // Specify the input and output file paths
+            // Specify the input file path
 
             //YOU MUST SAVE YOUR INPUT FILE TO YOUR DESKTOP
 
@@ -21,43 +21,39 @@ public class JsonStringParser {
             String filePath = "C:" + fileSeparator + "Users" + fileSeparator + username + fileSeparator + "Desktop" + fileSeparator;
             String inputFile = filePath + fileName;
 
-            String fileName2 = "EntropyOutput.txt"; // UPDATE NAME OF OUTPUT FILE (create an empty txt file and save to your desktop)
+            // Create new txt file for output and save to desktop
 
-            //YOU MUST SAVE YOUR OUTPUT FILE TO YOUR DESKTOP
-
-            String outputFile = filePath + fileName2;
-
+            String userHomeFolder = System.getProperty("user.home") + fileSeparator + "Desktop";
+            File textFile = new File(userHomeFolder, "EntropyOutput.txt");
 
             System.out.println("Starting program...");
+
             // Create a BufferedReader to read the input text file
             BufferedReader br = new BufferedReader(new FileReader(inputFile));
 
             // Create a FileWriter to write to the output text file
-            FileWriter fw = new FileWriter(outputFile);
+            FileWriter fw = new FileWriter(textFile);
 
             // Turn each line within input file into JSON object
-
             String line;
             while ((line = br.readLine()) != null) {
                 // Parse the JSON string
                 JSONObject jsonObject = new JSONObject(line);
 
                 // Initialize variables
-
                 String keywords = "not found";
                 double clickEntropy = 0.0;
                 String pageType = "null";
 
+                // Create JSON array
                 JSONArray queryInfoArray = jsonObject.getJSONArray("queryInfo");
 
                 // Get keywords from first element json array
-
                 keywords = queryInfoArray.getJSONObject(0)
                         .getJSONObject("meta")
                         .getString("keywords");
 
                 // Check if each element in json array has a click-entropy score, and return it if so
-
                 for(int i = 0; i < queryInfoArray.length(); i++){
                     JSONObject obj = queryInfoArray.getJSONObject(i);
                     if(obj.has("type") && obj.get("type").toString().equals("query-specificity")){
@@ -94,5 +90,3 @@ public class JsonStringParser {
         }
     }
 }
-
-//testing commit with git
