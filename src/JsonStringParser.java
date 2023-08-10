@@ -16,8 +16,6 @@ public class JsonStringParser {
 
             String fileName = "entropy_json.txt"; // UPDATE NAME OF INPUT FILE
 
-
-
             String username = System.getProperty("user.name");
             String fileSeparator = FileSystems.getDefault().getSeparator();
             String filePath = "C:" + fileSeparator + "Users" + fileSeparator + username + fileSeparator + "Desktop" + fileSeparator;
@@ -48,6 +46,7 @@ public class JsonStringParser {
 
                 String keywords = "not found";
                 double clickEntropy = 0.0;
+                String pageType = "null";
 
                 JSONArray queryInfoArray = jsonObject.getJSONArray("queryInfo");
 
@@ -69,8 +68,15 @@ public class JsonStringParser {
                     }
                 }
 
+                if(clickEntropy <= 3){
+                    pageType = "Detail";
+                } else {
+                    pageType = "Search";
+                }
+
+
                 // Write the extracted values to the output text file
-                fw.write("Keyword: " + keywords + ", Score: " + clickEntropy + "\n");
+                fw.write("Keyword: " + keywords + ", Score: " + clickEntropy + ", Page Type: " + pageType + "\n");
 
             }
 
