@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.*;
 import java.nio.file.FileSystems;
 import java.util.Scanner;
@@ -90,6 +91,11 @@ public class JsonStringParser {
             fw.close();
 
             System.out.println("Extraction and writing completed successfully.");
+
+            Desktop desktop = Desktop.getDesktop();
+            if(textFile.exists()) desktop.open(textFile);
+
+
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
