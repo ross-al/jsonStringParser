@@ -4,6 +4,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.*;
 import java.nio.file.FileSystems;
+import java.util.Scanner;
 
 
 public class JsonStringParser {
@@ -13,13 +14,21 @@ public class JsonStringParser {
             // Specify the input file path
 
             //YOU MUST SAVE YOUR INPUT FILE TO YOUR DESKTOP
+            System.out.println("Firstly, save your txt file to your desktop.");
+            System.out.println("What's your file's name? e.g. 'entropy_json.txt'");
+            Scanner scanner = new Scanner(System.in);
+            String fileName = scanner.nextLine(); // UPDATE NAME OF INPUT FILE
 
-            String fileName = "entropy_json.txt"; // UPDATE NAME OF INPUT FILE
+            // future improvements: create drag drop file box on website
 
             String username = System.getProperty("user.name");
             String fileSeparator = FileSystems.getDefault().getSeparator();
             String filePath = "C:" + fileSeparator + "Users" + fileSeparator + username + fileSeparator + "Desktop" + fileSeparator;
             String inputFile = filePath + fileName;
+
+            // Check if file exists...
+
+            // Create input loop if file doesn't exist
 
             // Create new txt file for output and save to desktop
 
