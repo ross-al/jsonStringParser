@@ -74,7 +74,7 @@ public class JsonStringParser {
                     }
                 }
 
-                if(clickEntropy <= 3){
+                if(clickEntropy <= 2){
                     pageType = "Detail";
                 } else {
                     pageType = "Search";
